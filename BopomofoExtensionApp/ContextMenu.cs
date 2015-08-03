@@ -51,6 +51,7 @@ namespace phding.BopomofoExtension.App
             this._textmodeItem = new ToolStripMenuItem();
 
             this._textmodeItem.Text = "Text mode";
+            this._textmodeItem.Enabled = false;
             menu.Items.Add(this._textmodeItem);
 
             this.SetTextModeText(BopomofoRegistry.IsSimplifiedEnable(), false);

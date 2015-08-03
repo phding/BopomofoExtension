@@ -72,7 +72,6 @@ namespace BopomofoExtensionApp
             var processes = Process.GetProcesses();
             var list = processes.Where(p => p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != foreGround);
 
-            var count = list.Count();
             if (list.Any())
             {
                 SwitchToThisWindow(list.First().MainWindowHandle, true);
