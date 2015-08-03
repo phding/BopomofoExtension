@@ -15,26 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_12F7D12ABBAF90B5D2F9452FA0004F1D"
-        "OwnerKey" = "8:_8576D5B69B794D0E91E88610E54E3C86"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8576D5B69B794D0E91E88610E54E3C86"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_12F7D12ABBAF90B5D2F9452FA0004F1D"
+        "MsmKey" = "8:_BD6FA0731A73D7F8223903B3B31EB99B"
+        "OwnerKey" = "8:_8576D5B69B794D0E91E88610E54E3C86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8576D5B69B794D0E91E88610E54E3C86"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BD6FA0731A73D7F8223903B3B31EB99B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -132,14 +132,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_12F7D12ABBAF90B5D2F9452FA0004F1D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD6FA0731A73D7F8223903B3B31EB99B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:phding.Bopomofo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_12F7D12ABBAF90B5D2F9452FA0004F1D"
+                    "_BD6FA0731A73D7F8223903B3B31EB99B"
                     {
                     "Name" = "8:phding.Bopomofo.dll"
                     "Attributes" = "3:512"
@@ -220,7 +220,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BopomofoExtension"
         "ProductCode" = "8:{ACE9819B-A927-4C1F-81B4-AF1046C75308}"
-        "PackageCode" = "8:{0F673240-9B03-4893-8217-FEF020A688C4}"
+        "PackageCode" = "8:{201B8271-DCD0-4FD5-B82F-916982ED791D}"
         "UpgradeCode" = "8:{6E3B82E2-DD77-4591-A4D3-1FA85E79AB13}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -354,7 +354,7 @@
                                                             "Condition" = "8:"
                                                             "Transitive" = "11:FALSE"
                                                             "ValueTypes" = "3:1"
-                                                            "Value" = "8:[ProgramFilesFolder]opomofoExtension\\BopomofoExtension.exe"
+                                                            "Value" = "8:[ProgramFilesFolder]BopomofoExtension\\BopomofoExtension.exe"
                                                             }
                                                         }
                                                     }
@@ -805,7 +805,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8576D5B69B794D0E91E88610E54E3C86"
             {
-            "SourcePath" = "8:..\\BopomofoExtensionApp\\obj\\Release\\BopomofoExtensionApp.exe"
+            "SourcePath" = "8:..\\BopomofoExtensionApp\\obj\\Release\\BopomofoExtension.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_699401C6651F47728A1286C49910E920"
