@@ -159,7 +159,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -220,7 +220,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:BopomofoExtension"
         "ProductCode" = "8:{ACE9819B-A927-4C1F-81B4-AF1046C75308}"
-        "PackageCode" = "8:{201B8271-DCD0-4FD5-B82F-916982ED791D}"
+        "PackageCode" = "8:{75FFD010-2E84-4CAD-8709-EDDD468BD16A}"
         "UpgradeCode" = "8:{6E3B82E2-DD77-4591-A4D3-1FA85E79AB13}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

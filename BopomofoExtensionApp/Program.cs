@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 using phding.Bopomofo;
@@ -11,6 +12,15 @@ namespace BopomofoExtensionApp
 {
     static class Program
     {
+        [DllImport("user32.dll")]
+        public static extern void SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+
+        private static ProcessIcon pi;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -41,18 +51,37 @@ namespace BopomofoExtensionApp
 
            // Application.Run(new Form1());
 
+
+
             // Show the system tray icon.					
-            using (ProcessIcon pi = new ProcessIcon())
+            using (pi = new ProcessIcon())
             {
                 pi.Display();
 
+
                 // Make sure the application runs!
                 Application.Run();
+
             }
         }
+
         private static void HotKeyManager_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
-            if (BopomofoRegistry.IsSimplifiedEnable())
+            var foreGround = GetForegroundWindow();
+            System.Diagnostics.Process me = System.Diagnostics.Process.GetCurrentProcess();
+            var processes = Process.GetProcesses();
+            var list = processes.Where(p => p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != foreGround);
+
+            var count = list.Count();
+            if (list.Any())
+            {
+                SwitchToThisWindow(list.First().MainWindowHandle, true);
+                SwitchToThisWindow(foreGround, true);
+            }
+
+            var isSimplifiedEnable = BopomofoRegistry.IsSimplifiedEnable();
+            
+            if (isSimplifiedEnable)
             {
                 Console.WriteLine("Disable");
                 BopomofoRegistry.EnableSimplified(false);
@@ -62,6 +91,8 @@ namespace BopomofoExtensionApp
                 Console.WriteLine("Enable");
                 BopomofoRegistry.EnableSimplified(true);
             }
+            isSimplifiedEnable = BopomofoRegistry.IsSimplifiedEnable();
+            pi.SetTextModeText(isSimplifiedEnable);
         }
     }
 }

@@ -2,11 +2,35 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 
+using phding.Bopomofo;
 
 namespace phding.BopomofoExtension.App
 {
-    class ContextMenus
+    public class ContextMenus
     {
+
+        public void SetTextModeText(bool isSimplifiedEnabled, bool invalidate)
+        {
+            if (this._textmodeItem != null)
+            {
+
+                if (isSimplifiedEnabled)
+                {
+                    this._textmodeItem.Text = "Simplified";
+                }
+                else
+                {
+                    this._textmodeItem.Text = "Traditional";
+                }
+
+                if (invalidate)
+                {
+                    this._textmodeItem.Invalidate();
+                }
+            }
+        }
+
+        private ToolStripMenuItem _textmodeItem;
         /// <summary>
         /// Is the About box displayed?
         /// </summary>
@@ -22,6 +46,14 @@ namespace phding.BopomofoExtension.App
             ContextMenuStrip menu = new ContextMenuStrip();
             ToolStripMenuItem item;
             ToolStripSeparator sep;
+
+
+            this._textmodeItem = new ToolStripMenuItem();
+
+            this._textmodeItem.Text = "Text mode";
+            menu.Items.Add(this._textmodeItem);
+
+            this.SetTextModeText(BopomofoRegistry.IsSimplifiedEnable(), false);
 
             // About.
             item = new ToolStripMenuItem();

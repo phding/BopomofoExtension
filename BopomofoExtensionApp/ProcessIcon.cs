@@ -14,6 +14,8 @@ namespace BopomofoExtensionApp
         /// </summary>
         private NotifyIcon ni;
 
+        private ContextMenus _contextMenu;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessIcon"/> class.
         /// </summary>
@@ -35,9 +37,22 @@ namespace BopomofoExtensionApp
             this.ni.Visible = true;
 
             // Attach a context menu.
-            this.ni.ContextMenuStrip = new ContextMenus().Create();
+            this._contextMenu = new ContextMenus();
+            this.ni.ContextMenuStrip = this._contextMenu.Create();
         }
 
+
+        public void SetTextModeText(bool isSimplifiedEnable)
+        {
+            MethodInvoker method = delegate
+            {
+                this._contextMenu.SetTextModeText(isSimplifiedEnable, true);
+                this.ni.ContextMenuStrip.Invalidate();
+                this.ni.ContextMenuStrip.Update();
+                this.ni.ContextMenuStrip.Refresh();
+            };
+            this.ni.ContextMenuStrip.Invoke(method);
+        }
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
