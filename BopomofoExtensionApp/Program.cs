@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 using phding.Bopomofo;
@@ -18,6 +19,11 @@ namespace BopomofoExtensionApp
         public static extern bool SetForegroundWindow(IntPtr hWnd);
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        public static extern int SetActiveWindow(IntPtr hwnd);
+        [DllImport("user32.dll")]
+        public static extern int SetFocus(IntPtr hwnd);
 
 
         private static ProcessIcon pi;
@@ -70,16 +76,19 @@ namespace BopomofoExtensionApp
             var foreGround = GetForegroundWindow();
             System.Diagnostics.Process me = System.Diagnostics.Process.GetCurrentProcess();
             var processes = Process.GetProcesses();
-            var list = processes.Where(p => p.MainWindowHandle != IntPtr.Zero && p.MainWindowHandle != foreGround);
+            var list = processes.Where(p => p.ProcessName == "explorer");
+
+            var isSimplifiedEnable = BopomofoRegistry.IsSimplifiedEnable();
 
             if (list.Any())
             {
-                SwitchToThisWindow(list.First().MainWindowHandle, true);
-                SwitchToThisWindow(foreGround, true);
+                var handle = list.First().MainWindowHandle;
+                SwitchToThisWindow(handle, true);
+                SetActiveWindow(handle);
             }
 
-            var isSimplifiedEnable = BopomofoRegistry.IsSimplifiedEnable();
-            
+            Thread.Sleep(100);
+
             if (isSimplifiedEnable)
             {
                 Console.WriteLine("Disable");
@@ -90,8 +99,12 @@ namespace BopomofoExtensionApp
                 Console.WriteLine("Enable");
                 BopomofoRegistry.EnableSimplified(true);
             }
+
             isSimplifiedEnable = BopomofoRegistry.IsSimplifiedEnable();
             pi.SetTextModeText(isSimplifiedEnable);
+
+            SwitchToThisWindow(foreGround, true);
+            SetActiveWindow(foreGround);
         }
     }
 }

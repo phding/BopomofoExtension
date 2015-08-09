@@ -51,7 +51,13 @@ namespace BopomofoExtensionApp
                 this.ni.ContextMenuStrip.Update();
                 this.ni.ContextMenuStrip.Refresh();
             };
-            this.ni.ContextMenuStrip.Invoke(method);
+            try
+            {
+                this.ni.ContextMenuStrip.Invoke(method);
+            }
+            catch (Exception)
+            {
+            }
         }
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
